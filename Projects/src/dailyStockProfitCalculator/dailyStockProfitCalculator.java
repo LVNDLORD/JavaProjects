@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.text.*;
 
-public class Driver {
+public class dailyStockProfitCalculator {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in); // creating a scanner object, with var scan. System in - standard input
         System.out.print("Enter the buying price per share: ");
@@ -9,7 +9,7 @@ public class Driver {
         System.out.print("Enter the amount of shares purchased: ");
         int sharesNumber = scan.nextInt();
         int day = 1;
-        double closingPrice = 0.01;
+        double closingPrice;
         DecimalFormat df = new DecimalFormat("0.00");
 
         while (true) {
