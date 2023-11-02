@@ -5,6 +5,7 @@ out/
 Projects.iml
 JavaProjects.iml
 .idea
+*.iml
 
 ### Eclipse ###
 .apt_generated
