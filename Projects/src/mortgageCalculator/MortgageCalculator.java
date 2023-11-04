@@ -13,7 +13,6 @@ public class MortgageCalculator {
         final int MIN_YEARS = 1;
         final int MAX_YEARS = 30;
 
-
         Scanner scanner = new Scanner(System.in);
 
         int principal = (int) readNumber(scanner, "Amount of loan ($1K - $1M): ", MIN_AMOUNT, MAX_AMOUNT);
@@ -22,19 +21,8 @@ public class MortgageCalculator {
 
         scanner.close();
 
-        double monthlyPayment = calculateMonthlyMortgage(principal, annualInterest, years);
-
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
-        String formattedPayment = currency.format(monthlyPayment);
-        System.out.println("\nMORTGAGE\n--------");
-        System.out.printf("Monthly Payments: %s%n", formattedPayment);
-        System.out.printf("In total you will have %s payments\n", calcNumOfMonthlyPayments(years));
-
-        System.out.println("\nPAYMENT SCHEDULE\n----------------");
-        for (short month = 1; month < calcNumOfMonthlyPayments(years); month++) {
-            double balance = calculateBalance(principal, annualInterest, years, month);
-            System.out.println(NumberFormat.getCurrencyInstance().format(balance));
-        }
+        printMortgage(principal, annualInterest, years);
+        printPaymentSchedule(principal, annualInterest, years);
     }
 
     public static double readNumber(Scanner scanner, String prompt, double min, double max) {
@@ -80,5 +68,22 @@ public class MortgageCalculator {
                 - Math.pow(1 + monthlyInterest, numOfPaymentsMade))
                 / (Math.pow(1 + monthlyInterest, numOfMonthlyPayments) - 1));
 
+    }
+
+    private static void printMortgage(int principal, double annualInterest, byte years) {
+        double monthlyPayment = calculateMonthlyMortgage(principal, annualInterest, years);
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        String formattedPayment = currency.format(monthlyPayment);
+        System.out.println("\nMORTGAGE\n--------");
+        System.out.printf("Monthly Payments: %s%n", formattedPayment);
+        System.out.printf("In total you will have %s payments\n", calcNumOfMonthlyPayments(years));
+    }
+
+    private static void printPaymentSchedule(int principal, double annualInterest, byte years) {
+        System.out.println("\nPAYMENT SCHEDULE\n----------------");
+        for (short month = 1; month <= calcNumOfMonthlyPayments(years); month++) {
+            double balance = calculateBalance(principal, annualInterest, years, month);
+            System.out.println(NumberFormat.getCurrencyInstance().format(balance));
+        }
     }
 }
