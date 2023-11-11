@@ -9,9 +9,9 @@ public class RosterTable {
         // ArrayList of ArrayLists
         ArrayList<ArrayList<String>> roster = new ArrayList<>(days);
         // each sub-arrayList (days on duty)
-        ArrayList<String> day1 = new ArrayList<String>();
-        ArrayList<String> day2 = new ArrayList<String>();
-        ArrayList<String> day3 = new ArrayList<String>();
+        ArrayList<String> day1 = new ArrayList<>();
+        ArrayList<String> day2 = new ArrayList<>();
+        ArrayList<String> day3 = new ArrayList<>();
         day1.add("Alice");
         day1.add("Bob");
         roster.add(day1);
